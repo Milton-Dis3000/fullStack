@@ -1,0 +1,157 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+#generalContainer {
+  width: 1200px;
+  height: auto;
+  padding: 20px 20px 20px 20px;
+}
+
+
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#isologotipo{
+  max-height: 40px;
+  margin-left: 10px; 
+  padding-top: 10px;
+}
+
+#toggleBar {
+  position: absolute;
+  right: 25px; 
+  top: 24px; 
+  width: 150px;
+  
+
+  height: 0px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  transition: 1s height ease-in;
+
+}
+
+#toggleBar.active{
+  padding: 60px 0px 0px 0px;
+  height: auto;
+}
+
+
+
+#photoContainer1 {
+  display: flex; 
+  align-items: center; 
+  padding: 10px;
+  gap: 5px;
+}
+
+#photoContainer1 img {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  object-fit: cover;
+  
+}
+
+#Icons{
+  width: 10px;
+  height: 10px;
+  
+}
+
+#photoContainer1 p {
+  font-size: 11px;
+  margin-right: 10px; 
+  
+}
+
+#photoContainer1 img:last-child {
+  width: 8px;
+  height:8px;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+
+#toggleIcons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#toggleIcons i {
+  color: gray;
+  width: 30px; 
+  height: 30px; 
+
+}
+
+
+
+#infeText {
+  width: 100%;
+  height: 75%;
+  border-radius: 10px;
+  padding: 7px;
+  border: 2px solid rgba(224, 224, 224, 1);
+}
+
+
+#logout {
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  color: #ff3838;
+  padding: 10px 0px 10px 10px; 
+}
+
+#logout a {
+  text-decoration: none;
+  color: #ff3838;
+  cursor: pointer;
+}
+
+
+.backText > a{
+  display: flex;
+  left: 320px;
+  color: rgba(45, 156, 219, 1);
+  padding: 20px 20px 20px 170px;
+  font-family: 'Trebuchet MS';
+  font-size: 18px;
+  cursor: pointer;
+  background:none;
+  border: none;
+  text-decoration: none;
+}
+
+#toggleContainer {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+p {
+  margin: 0; 
+}
+
+.fa-sort-down {
+  margin-left: 10px; 
+}
+
+.hidden {
+    display: none;
+}
