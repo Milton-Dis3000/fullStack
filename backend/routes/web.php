@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/views/usuarios.php', 'UsuariosController@index')->name('usuarios');
+Route::get('/views_controller/controller_dashboard.php', 'ControllerDashboardController@index')->name('controller_dashboard');
+Route::get('/views_usuarios/user_profile.php', 'UserProfileController@index')->name('user_profile');

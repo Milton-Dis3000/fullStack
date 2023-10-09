@@ -24,18 +24,18 @@
 
                 <div class="p-1">
                     <label for="exampleInputEmail1" class="form-label">Usuario *</label>
-                    <input type="text" class="form-control p-1" name="usuario" placeholder="Ingresa un correo electrónico">
+                    <input type="text" class="form-control p-1" name="usuario" placeholder="Ingresa un correo electrónico"require>
                 </div>
 
                 <div class="flex">
                     <div class="flex-grow p-1 mr-3">
                         <label for="exampleInputEmail1" class="form-label">Clave *</label>
-                        <input type="password" class="form-control p-1 w-full" name="clave" placeholder="Ingresa una contraseña">
+                        <input type="password" class="form-control p-1 w-full" name="clave" placeholder="Ingresa una contraseña"require>
                     </div>
 
                     <div class="p-1">
                         <label for="exampleInputEmail1" class="form-label">Fecha *</label>
-                        <input type="date" class="form-control p-1" name="fecha">
+                        <input type="date" class="form-control p-1" name="fecha"require>
                     </div>
                 </div>
 
