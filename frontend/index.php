@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['usuario'];
@@ -25,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($usuario && $password === $usuario['clave']) {
         // Inicio de sesión exitoso, redireccionar según el rol
         $rol = $usuario['id_rol'];
+
+        // Aquí es donde deberías establecer la sesión
+        $_SESSION['user'] = $usuario;
+
         if ($rol == 1) {
             header('Location: /views/parametros.php');
             exit();

@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (isset($_SESSION['user'])) {
+    $userData = $_SESSION['user'];
+
+} else {
+    header('Location: /index.php');
+    exit();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +40,7 @@
             <div id="photoContainer1">
                 <img src="/src/img/perfilvacio.png" alt="photo">
 
-                <p>xxxxx</p>
+                <p><?= $userData['id_persona'] ?></p>
 
                 <div id="toggleIcons">
                     <!-- <i class="fa-solid fa-caret-up"></i> -->
@@ -43,7 +56,7 @@
                     <div id="profile">
                         <i class="fa-solid fa-circle-user"></i>
 
-                        <a href="profile.php">My profile</a>
+                        <a href="/views_usuarios/user_profile.php">My profile</a>
                     </div>
 
                     <div id="chat">
@@ -77,6 +90,7 @@
         <section class="bg-white p-6 rounded-lg border border-gray-300 mx-auto" style="max-width: 500px; width: 100%;">
 
             <form action="" method="post" enctype="multipart/form-data">
+                
 
                 <div class="flex items-center justify-between mb-4 border-b pb-4">
                     <div>
@@ -94,27 +108,32 @@
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">NAME</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxx</p>
+                    <p class="text-gray-800 ml-2"><?= $userData['id_persona'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">BIO</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxxx</p>
+                    <h2 class="text-lg font-bold">ROL</h2>
+                    <p class="text-gray-800 ml-2"><?= $userData['id_rol'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">PHONE</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxxx</p>
+                    <h2 class="text-lg font-bold">ESTADO</h2>
+                    <p class="text-gray-800 ml-2"><?= $userData['habilitado'] ?></p>
+                </div>
+
+                <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
+                    <h2 class="text-lg font-bold">FECHA</h2>
+                    <p class="text-gray-800 ml-2"><?= $userData['fecha'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">EMAIL</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxxxx</p>
+                    <p class="text-gray-800 ml-2"><?= $userData['usuario'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-b border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">PASSWORD</h2>
-                    <p class="text-gray-800 ml-2">***********</p>
+                    <p class="text-gray-800 ml-2"><?= $userData['clave'] ?>/p>
                 </div>
             </form>
         </section>

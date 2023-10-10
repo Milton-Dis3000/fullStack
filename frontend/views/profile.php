@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (isset($_SESSION['user'])) {
+    $userData = $_SESSION['user'];
+    
+} else {
+    header('Location: /index.php');
+    exit();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +40,7 @@
             <div id="photoContainer1">
                 <img src="/src/img/perfilvacio.png" alt="photo">
 
-                <p>xxxxx</p>
+                <p>Nombres</p>
 
                 <div id="toggleIcons">
                     <!-- <i class="fa-solid fa-caret-up"></i> -->
@@ -78,13 +91,14 @@
 
             <form action="" method="post" enctype="multipart/form-data">
 
+
                 <div class="flex items-center justify-between mb-4 border-b pb-4">
                     <div>
                         <h2 class="text-lg font-bold">Profile</h2>
                         <p class="text-gray-500 text-sm">Some info may be visible to other people</p>
                     </div>
 
-                    <a href="./edit_profile.php" class="border border-gray-300 text-black px-3 py-2 rounded hover:bg-gray-100 hover:text-blue-700 cursor-pointer">Edit</a>
+                    <a href="/views_usuarios/edit_profile.php" class="border border-gray-300 text-black px-3 py-2 rounded hover:bg-gray-100 hover:text-blue-700 cursor-pointer">Edit</a>
                 </div>
 
                 <div class="flex items-center mb-4 ">
@@ -94,22 +108,22 @@
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">NAME</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxx</p>
+                    <p class="text-gray-800 ml-2">Nombre</p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">BIO</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxxx</p>
+                    <p class="text-gray-800 ml-2">Biografía</p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">PHONE</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxxx</p>
+                    <p class="text-gray-800 ml-2">Teléfono</p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
                     <h2 class="text-lg font-bold">EMAIL</h2>
-                    <p class="text-gray-800 ml-2">xxxxxxxxxxxxx</p>
+                    <p class="text-gray-800 ml-2"><?= $userData['usuario'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-b border-gray-300 py-4 items-center justify-between">
