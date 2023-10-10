@@ -84,5 +84,3 @@ Route::get('/bitacoras', [BitacoraController::class, 'index']);
 Route::put('/actualizar', [ActualizarController::class, 'update']);
 
 
-
-// Route::get('/enlaces', [RolController::class, 'index']);

@@ -45,10 +45,6 @@ class RolController extends Controller
         return $rol;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-
 
     /**
      * Update the specified resource in storage.
