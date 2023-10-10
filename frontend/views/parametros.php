@@ -1,10 +1,42 @@
 <?php
-$url = 'http://localhost:8000/api/bitacoras';
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
-$data = json_decode($response, true);
+
+// Obtener datos de la APIS
+$usuariosResponse = json_decode(file_get_contents('http://127.0.0.1:8000/api/usuarios'), true);
+
+$rolsResponse = json_decode(file_get_contents('http://127.0.0.1:8000/api/rols'), true);
+
+$paginasResponse = json_decode(file_get_contents('http://127.0.0.1:8000/api/paginas'), true);
+
+$enlacesResponse = json_decode(file_get_contents('http://127.0.0.1:8000/api/enlaces'), true);
+
+// Procesar los datos
+$usuarios = [];
+foreach ($usuariosResponse as $usuario) {
+    $usuarios[$usuario['id']] = $usuario;
+}
+
+$rols = [];
+foreach ($rolsResponse as $rol) {
+    $rols[$rol['id']] = $rol;
+}
+
+$paginas = [];
+foreach ($paginasResponse as $pagina) {
+    $paginas[$pagina['id']] = $pagina;
+}
+
+$enlaces = [];
+foreach ($enlacesResponse as $enlace) {
+    $enlaces[$enlace['id']] = $enlace;
+}
+
+// var_dump($usuarios);
+
+// var_dump($rols);
+
+// var_dump($paginas);
+
+// var_dump($enlaces);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +58,7 @@ $data = json_decode($response, true);
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/toggle.css">
 
-    <title>Bitacoras</title>
+    <title>Usuarios</title>
 
 </head>
 
@@ -36,7 +68,6 @@ $data = json_decode($response, true);
 
         <main class="flex flex-col md:flex-row w-full">
             <section class="flex flex-col w-full h-auto md:w-1/5 bg-[#353A40] text-[#B2B2B2] flex-grow">
-
                 <div class="p-4 mb-4">
                     <div class="menu-item">
                         <div class="menu-header">
@@ -89,63 +120,73 @@ $data = json_decode($response, true);
 
             <section class="w-full md:w-4/5 h-auto bg-[#F5F6FA] text-[#ADADAD] flex-grow">
 
+                <!-- toglleBar -->
                 <nav>
-                    <div id="isologotipo" class="flex items-center">
+                    <div id="isologotipo" class="">
                         <span class="pl-4 pr-4 mr-2 cursor-pointer"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
                         <a href="../index.php">LOGOUT</a>
                     </div>
+
+
                 </nav>
 
                 <div class="p-3 flex justify-between items-center pt-10">
-                    <h2 class="text-lg font-semibold">Lista de Bitacoras</h2>
+                    <h2 class="text-lg font-semibold">Parametros</h2>
 
                 </div>
+
+                <!-- TABLE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
 
                 <div class="container">
                     <div class="table-responsive">
                         <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="py-2">ID</th>
-                                    <th class="py-2">Bitacora</th>
-                                    <th class="py-2">Fecha</th>
-                                    <th class="py-2">Hora</th>
-                                    <th class="py-2">Ip</th>
-                                    <th class="py-2">So</th>
-                                    <th class="py-2">Navegador</th>
-                                    <th class="py-2">Usuario</th>
-                                    <th class="py-2">Id_usuario</th>
+                                    <th class="py-2">Nro.</th>
+                                    <th class="py-2">Enlace</th>
+                                    <th class="py-2">Ruta</th>
+                                    <th class="py-2">Icono</th>
+                                    <th class="py-2">Roles</th>
+                                    <th class="py-2">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $row) : ?>
-                                    <tr>
-                                        <td><?= $row['id'] ?></td>
-                                        <td><?= $row['bitacora'] ?></td>
-                                        <td><?= $row['fecha'] ?></td>
-                                        <td><?= $row['hora'] ?></td>
-                                        <td><?= $row['ip'] ?></td>
-                                        <td><?= $row['so'] ?></td>
-                                        <td><?= $row['navegador'] ?></td>
-                                        <td><?= $row['usuario'] ?></td>
-                                        <td><?= $row['id_usuario'] ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
+                                <?php
+                                // Iterar sobre los usuarios y mostrar la información en la tabla
+                                foreach ($usuarios as $usuario) {
+                                    echo "<tr>";
+                                    echo "<td>{$usuario['id']}</td>";
+                                    echo "<td>{$paginas[$usuario['id']]['url']}</td>";
+                                    echo "<td>{$enlaces[$usuario['id']]['descripcion']}</td>";
+                                    echo "<td>{$paginas[$usuario['id']]['icono']}</td>";
+                                    echo "<td>{$rols[$usuario['id_rol']]['rol']}</td>";
+
+                                    // Acciones
+                                    echo "<td class='flex items-center'>
+                                            <a href='/views/edit_parametros.php?id={$usuario['id']}'>
+                                                <button class='text-gray-600 font-bold py-1 px-2 rounded text-xs'>
+                                                    <i class='far fa-pen-to-square text-blue-500 hover:text-blue-600'></i>
+                                                </button>
+                                            </a>
+                                        </td>";
+                                }
+
+
+
+                                ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <script>
                     $(document).ready(function() {
                         $('#example').DataTable();
                     });
                 </script>
-
             </section>
+
         </main>
     </div>
-
 </body>
 
 </html>

@@ -12,7 +12,8 @@ class PaginaController extends Controller
      */
     public function index()
     {
-        //
+        $pagina = new Pagina();
+        return $pagina->all();
     }
 
     /**
@@ -34,9 +35,12 @@ class PaginaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pagina $pagina)
+    public function show(string $id)
+
     {
-        //
+        $pagina = Pagina::find($id);
+        $pagina->enlaces;
+        return $pagina;
     }
 
     /**
@@ -50,11 +54,19 @@ class PaginaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pagina $pagina)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $pagina = Pagina::find($id);
+        $pagina->url = $request->url;
+        $pagina->estado = $request->estado;
+        $pagina->nombre = $request->nombre;
+        $pagina->descripcion = $request->descripcion;
+        $pagina->icono = $request->icono;
+        $pagina->tipo = $request->tipo;
+        $pagina->save();
 
+        // return redirect('http://localhost:3000/views/enlaces.php');
+    }
     /**
      * Remove the specified resource from storage.
      */

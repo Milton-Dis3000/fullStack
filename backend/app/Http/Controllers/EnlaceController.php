@@ -45,9 +45,11 @@ class EnlaceController extends Controller
     public function show(string $id)
     {
         $enlace = Enlace::find($id);
-
         return $enlace;
     }
+
+
+
 
     /**
      * Update the specified resource in storage.

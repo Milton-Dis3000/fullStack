@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ActualizarController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\EnlaceController;
+use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
@@ -67,14 +68,20 @@ Route::controller(PersonaController::class)->group(function () {
 
 
 
+Route::controller(PaginaController::class)->group(function () {
+    Route::get('/paginas', 'index');
+    Route::get('/paginas/{id}', 'show');
+    Route::post('/paginas', 'store');
+    Route::put('/paginas/{id}', 'update');
+    Route::delete('/paginas/{id}', 'destroy');
+});
+
+
 Route::get('/bitacoras', [BitacoraController::class, 'index']);
 
 
-Route::post('/login', [AuthController::class, 'login']);
 
-
-
-
+Route::put('/actualizar', [ActualizarController::class, 'update']);
 
 
 

@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Inicio de sesión exitoso, redireccionar según el rol
         $rol = $usuario['id_rol'];
         if ($rol == 1) {
-            header('Location: /views/usuarios.php');
+            header('Location: /views/parametros.php');
             exit();
         } elseif ($rol == 2) {
-            header('Location: /views_controller/controller_dashboard.php');
+            header('Location: /views/usuarios.php');
             exit();
         } elseif ($rol == 3) {
             header('Location: /views_usuarios/user_profile.php');

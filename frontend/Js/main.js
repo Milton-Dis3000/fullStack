@@ -1,14 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const menuItems = document.querySelectorAll('.menu-item');
+const toggleBar=document.getElementById("toggleBar");
 
-    menuItems.forEach(function(item) {
-        const submenu = item.querySelector('.submenu');
-        const toggleIcon = item.querySelector('.toggle-icon');
+const liToggle = document.querySelector("nav > ul ");
+console.log(liToggle);
 
-        item.addEventListener('click', function() {
-            submenu.classList.toggle('hidden');
-            toggleIcon.querySelector('i').classList.toggle('fa-chevron-down');
-            toggleIcon.querySelector('i').classList.toggle('fa-chevron-up');
-        });
-    });
-});
+liToggle.addEventListener("click", ()=>{
+    toggleBar.classList.toggle("active");
+})

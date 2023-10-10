@@ -35,29 +35,37 @@
                     <div class="submenu hidden">
 
                         <div class="flex flex-row items-center border-b border-gray-600 pb-2 cursor-pointer hover:bg-gray-800">
+                            <span class="cursor-pointer p-2"><i class="fa-solid fa-users-gear"></i></span>
+                            <form action="/views/parametros.php" method="post">
+                                <button type="submit" class="text-xl">Parametros</button>
+                            </form> 
+                        </div>
+
+                    
+                        <div class="flex flex-row items-center border-b border-gray-600 pb-2 cursor-pointer hover:bg-gray-800">
                             <span class="cursor-pointer"><i class="fa-solid fa-user-gear mr-2"></i></span>
-                            <form action="/views_Admin/permiso_crud.php" method="post">
+                            <form action="/views/roles.php" method="post">
                                 <button type="submit" class="text-xl">Roles</button>
                             </form>
                         </div>
 
                         <div class="flex flex-row items-center border-b border-gray-600 pb-2 cursor-pointer hover:bg-gray-800">
                             <span class="cursor-pointer"><i class="fa-solid fa-chalkboard-user mr-2"></i></span>
-                            <form action="/views_Admin/maestro_crud.php" method="post">
+                            <form action="/views/usuarios.php" method="post">
                                 <button class="text-xl">Usuarios</button>
                             </form>
                         </div>
 
                         <div class="flex flex-row items-center border-b border-gray-600 pb-2 cursor-pointer hover:bg-gray-800">
                             <span class="cursor-pointer"><i class="fa-solid fa-laptop-code mr-2"></i></span>
-                            <form action="/views_Admin/alumno_crud.php" method="post">
+                            <form action="/views/bitacoras.php" method="post">
                                 <button class="text-xl">Bitacoras</button>
                             </form>
                         </div>
 
                         <div class="flex flex-row items-center  border-gray-600 pb-2 cursor-pointer hover:bg-gray-800">
                             <span class="cursor-pointer"><i class="fa-solid fa-link"></i></span>
-                            <form action="/views_Admin/clases_crud.php" method="post">
+                            <form action="/views/enlaces.php" method="post">
                                 <button class="text-xl">Enlaces</button>
                             </form>
                         </div>
@@ -148,7 +156,7 @@
                             ?>
                         </tbody>
 
-                    
+
                     </table>
                 </div>
             </div>
