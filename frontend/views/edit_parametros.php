@@ -56,10 +56,6 @@ if (isset($_GET['id'])) {
             ?>
 
 
-            <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
-            <input type="hidden" name="id_rol" value="<?= $id_rol ?>">
-            <input type="hidden" name="id_pagina" value="<?= $id_pagina ?>">
-            <input type="hidden" name="id_enlace" value="<?= $id_enlace ?>">
             
             <?php
             $url = 'http://127.0.0.1:8000/api/paginas';

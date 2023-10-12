@@ -29,15 +29,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(UsuarioController::class)->group(function () {
     Route::get('/usuarios', 'index');
-    Route::get('/usuarios/{id}', 'show');
+    Route::get('/usuarios/{id}', 'show')->name('usuarios.show');
     Route::post('/usuarios', 'store');
-    Route::put('/usuarios/{id}', 'update');
+    Route::put('/usuarios/{id}', 'update')->name('usuarios.update');
     Route::delete('/usuarios/{id}', 'destroy');
     Route::match(['get', 'put'], '/usuarios/{id}/editar', 'obtenerDatosUsuario')->name('usuarios.edit');
 });
 
 
-    // Route::post('/usuarios/{id_persona}/personas', 'persona');
+
+// Route::post('/usuarios/{id_persona}/personas', 'persona');
 
 
 
@@ -57,7 +58,10 @@ Route::controller(EnlaceController::class)->group(function () {
     Route::post('/enlaces', 'store');
     Route::put('/enlaces/{id}', 'update');
     Route::delete('/enlaces/{id}', 'destroy');
-    // Route::post('/enlaces/{id_pagina}/paginas', 'pagina');
+    // Route::put('/enlaces/{id}/paginas', 'pagina');
+
+    Route::match(['get', 'put'], '/enlaces/{id}/editar', 'obtenerDatosParametros')->name('parametros.edit');
+
 
 
 });
@@ -85,4 +89,4 @@ Route::get('/bitacoras', [BitacoraController::class, 'index']);
 
 
 
-// Route::put('/actualizar', [ActualizarController::class, 'update']);
+Route::put('/actualizar', [ActualizarController::class, 'update']);

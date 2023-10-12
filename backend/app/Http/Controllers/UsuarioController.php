@@ -48,22 +48,22 @@ class UsuarioController extends Controller
      */
 
 
-    // public function show(string $id)
-    // {
-    //     $usuario = Usuario::with('persona')->find($id);
-    //     return $usuario;
-    // }
-
-
-
-
-
     public function show(string $id)
     {
-        $usuario = Usuario::find($id);
-        $usuario->personas;
+        $usuario = Usuario::with('persona')->find($id);
         return $usuario;
     }
+
+
+
+
+
+    // public function show(string $id)
+    // {
+    //     $usuario = Usuario::find($id);
+    //     $usuario->personas;
+    //     return $usuario;
+    // }
 
 
     /**
@@ -102,33 +102,33 @@ class UsuarioController extends Controller
     }
 
 
-    // public function editarUsuario(Request $request, $id)
-    // {
-    //     $usuario = Usuario::with('persona')->find($id);
+    public function obtenerDatosUsuario(Request $request, $id)
+    {
+        $usuario = Usuario::with('persona')->find($id);
 
-    //     if ($request->isMethod('get')) {
-    //         return response()->json($usuario);
-    //     } elseif ($request->isMethod('put')) {
-    //         $usuario->usuario = $request->input('usuario');
-    //         $usuario->clave = $request->input('clave');
+        if ($request->isMethod('get')) {
+            return response()->json($usuario);
+        } elseif ($request->isMethod('put')) {
+            $usuario->usuario = $request->input('usuario');
+            $usuario->clave = $request->input('clave');
 
-    //         // Asignar un valor a 'habilitado' antes de guardar
-    //         // $usuario->habilitado = 'habilitado'; // O 'no_habilitado', según corresponda
-    //         // $usuario->fecha = '2023-10-04'; // O 'no_habilitado', según corresponda
+            // Asignar un valor a 'habilitado' antes de guardar
+            // $usuario->habilitado = 'habilitado'; // O 'no_habilitado', según corresponda
+            // $usuario->fecha = '2023-10-04'; // O 'no_habilitado', según corresponda
 
 
-    //         $usuario->save();
+            $usuario->save();
 
-    //         // Procesar y guardar los datos de la persona
-    //         $persona = Persona::find($usuario->id_persona);
-    //         $persona->primer_nombre = $request->input('primer_nombre');
-    //         $persona->segundo_nombre = $request->input('segundo_nombre');
-    //         $persona->primer_apellido = $request->input('primer_apellido');
-    //         $persona->segundo_apellido = $request->input('segundo_apellido');
+            // Procesar y guardar los datos de la persona
+            $persona = Persona::find($usuario->id_persona);
+            $persona->primer_nombre = $request->input('primer_nombre');
+            $persona->segundo_nombre = $request->input('segundo_nombre');
+            $persona->primer_apellido = $request->input('primer_apellido');
+            $persona->segundo_apellido = $request->input('segundo_apellido');
 
-    //         $persona->save();
+            $persona->save();
 
-    //         return response()->json(['message' => 'Datos actualizados correctamente']);
-    //     }
-    // }
+            return response()->json(['message' => 'Datos actualizados correctamente']);
+        }
+    }
 }

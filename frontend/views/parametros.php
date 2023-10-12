@@ -152,25 +152,24 @@ foreach ($enlacesResponse as $enlace) {
                             </thead>
                             <tbody>
                                 <?php
-                                // Iterar sobre los usuarios y mostrar la información en la tabla
                                 foreach ($usuarios as $usuario) {
                                     echo "<tr>";
-                                    echo "<td>{$usuario['id']}</td>";
-                                    echo "<td>{$paginas[$usuario['id']]['url']}</td>";
-                                    echo "<td>{$enlaces[$usuario['id']]['descripcion']}</td>";
-                                    echo "<td>{$paginas[$usuario['id']]['icono']}</td>";
-                                    echo "<td>{$rols[$usuario['id_rol']]['rol']}</td>";
+                                    echo "<td>" . (isset($paginas[$usuario['id']]['id']) ? $paginas[$usuario['id']]['id'] : '') . "</td>";
+                                    echo "<td>" . (isset($paginas[$usuario['id']]['url']) ? $paginas[$usuario['id']]['url'] : '') . "</td>";
+                                    echo "<td>" . (isset($enlaces[$usuario['id']]['descripcion']) ? $enlaces[$usuario['id']]['descripcion'] : '') . "</td>";
+                                    echo "<td>" . (isset($paginas[$usuario['id']]['icono']) ? $paginas[$usuario['id']]['icono'] : '') . "</td>";
+                                    echo "<td>" . (isset($rols[$usuario['id_rol']]['rol']) ? $rols[$usuario['id_rol']]['rol'] : '') . "</td>";
 
                                     // Acciones
                                     echo "<td class='flex items-center'>
-                                            <a href='/views/edit_parametros.php?id={$usuario['id']}'>
-                                                <button class='text-gray-600 font-bold py-1 px-2 rounded text-xs'>
-                                                    <i class='far fa-pen-to-square text-blue-500 hover:text-blue-600'></i>
-                                                </button>
-                                            </a>
-                                        </td>";
+                                    <a href='/views/edit_parametros.php?id={$usuario['id']}'>
+                                    <button class='text-gray-600 font-bold py-1 px-2 rounded text-xs'>
+                                     <i class='far fa-pen-to-square text-blue-500 hover:text-blue-600'></i>
+                                    </button>
+                                    </a>
+                                 </td>";
+                                    echo "</tr>";
                                 }
-
 
 
                                 ?>

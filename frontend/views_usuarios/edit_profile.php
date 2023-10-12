@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="photoContainer1">
                 <img src="/src/img/perfilvacio.png" alt="photo">
 
-                <p>value="<?php isset($userData['id_persona']) ? print($userData['primer_nombre']) : print('') ?>"</p>
+                <p><?= $userData['primer_nombre'] ?></p>
 
                 <div id="toggleIcons">
                     <!-- <i class="fa-solid fa-caret-up"></i> -->
@@ -114,6 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="bg-white p-6 rounded-lg border border-gray-300 mx-auto" style="max-width: 500px; width: 100%;">
 
             <form action="http://127.0.0.1:8000/api/usuarios" method="post" enctype="multipart/form-data" id="editForm">
+                <!-- <input type="hidden" name="_method" value="PUT"> -->
+
                 <input type="hidden" id="usuarioId" name="usuarioId" value="<?php echo $userData['id_persona']; ?>">
                 <input type="hidden" name="habilitado" value="<?php echo $userData['habilitado']; ?>">
                 <input type="hidden" name="fecha" value="<?php echo $userData['fecha']; ?>">
