@@ -2,11 +2,11 @@
 session_start();
 if (isset($_SESSION['user'])) {
     $userData = $_SESSION['user'];
-
 } else {
     header('Location: /index.php');
     exit();
 }
+
 ?>
 
 
@@ -40,7 +40,7 @@ if (isset($_SESSION['user'])) {
             <div id="photoContainer1">
                 <img src="/src/img/perfilvacio.png" alt="photo">
 
-                <p><?= $userData['id_persona'] ?></p>
+                <p><?= $userData['primer_nombre'] ?></p>
 
                 <div id="toggleIcons">
                     <!-- <i class="fa-solid fa-caret-up"></i> -->
@@ -90,7 +90,9 @@ if (isset($_SESSION['user'])) {
         <section class="bg-white p-6 rounded-lg border border-gray-300 mx-auto" style="max-width: 500px; width: 100%;">
 
             <form action="" method="post" enctype="multipart/form-data">
-                
+
+
+
 
                 <div class="flex items-center justify-between mb-4 border-b pb-4">
                     <div>
@@ -107,23 +109,13 @@ if (isset($_SESSION['user'])) {
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">NAME</h2>
-                    <p class="text-gray-800 ml-2"><?= $userData['id_persona'] ?></p>
+                    <h2 class="text-lg font-bold">NOMBRE</h2>
+                    <p class="text-gray-800 ml-2"><?= $userData['primer_nombre'] . ' ' . $userData['segundo_nombre'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">ROL</h2>
-                    <p class="text-gray-800 ml-2"><?= $userData['id_rol'] ?></p>
-                </div>
-
-                <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">ESTADO</h2>
-                    <p class="text-gray-800 ml-2"><?= $userData['habilitado'] ?></p>
-                </div>
-
-                <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">FECHA</h2>
-                    <p class="text-gray-800 ml-2"><?= $userData['fecha'] ?></p>
+                    <h2 class="text-lg font-bold">APELLIDO</h2>
+                    <p class="text-gray-800 ml-2"><?= $userData['primer_apellido'] . ' ' . $userData['segundo_apellido'] ?></p>
                 </div>
 
                 <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
@@ -131,9 +123,9 @@ if (isset($_SESSION['user'])) {
                     <p class="text-gray-800 ml-2"><?= $userData['usuario'] ?></p>
                 </div>
 
-                <div class="flex mb-4 border-t border-b border-gray-300 py-4 items-center justify-between">
-                    <h2 class="text-lg font-bold">PASSWORD</h2>
-                    <p class="text-gray-800 ml-2"><?= $userData['clave'] ?>/p>
+                <div class="flex mb-4 border-t border-gray-300 py-4 items-center justify-between">
+                    <h2 class="text-lg font-bold">CONTRASEÑA</h2>
+                    <p class="text-gray-800 ml-2"><?= $userData['clave'] ?></p>
                 </div>
             </form>
         </section>

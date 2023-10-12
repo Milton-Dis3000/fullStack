@@ -16,4 +16,5 @@ class Rol extends Model
     {
         return $this->hasMany(Usuario::class, 'id_rol');
     }
+
 }

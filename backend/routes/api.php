@@ -33,9 +33,13 @@ Route::controller(UsuarioController::class)->group(function () {
     Route::post('/usuarios', 'store');
     Route::put('/usuarios/{id}', 'update');
     Route::delete('/usuarios/{id}', 'destroy');
+    Route::match(['get', 'put'], '/usuarios/{id}/editar', 'obtenerDatosUsuario')->name('usuarios.edit');
+});
+
+
     // Route::post('/usuarios/{id_persona}/personas', 'persona');
 
-});
+
 
 
 Route::controller(RolController::class)->group(function () {
@@ -81,6 +85,4 @@ Route::get('/bitacoras', [BitacoraController::class, 'index']);
 
 
 
-Route::put('/actualizar', [ActualizarController::class, 'update']);
-
-
+// Route::put('/actualizar', [ActualizarController::class, 'update']);

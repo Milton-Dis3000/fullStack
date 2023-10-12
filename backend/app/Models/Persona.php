@@ -17,4 +17,6 @@ class Persona extends Model
         return $this->hasMany(Usuario::class, 'id_persona');
         
     }
+
+
 }

@@ -27,8 +27,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Inicio de sesión exitoso, redireccionar según el rol
         $rol = $usuario['id_rol'];
 
+        // Realizar una nueva solicitud para obtener la información de la persona
+        $urlPersona = 'http://127.0.0.1:8000/api/personas/' . $usuario['id_persona'];
+
+        $chPersona = curl_init($urlPersona);
+        curl_setopt($chPersona, CURLOPT_RETURNTRANSFER, true);
+        $responsePersona = curl_exec($chPersona);
+        curl_close($chPersona);
+
+        $persona = json_decode($responsePersona, true);
+
+        // Combinar la información del usuario y la persona
+        $userData = array_merge($usuario, $persona);
+
         // Aquí es donde deberías establecer la sesión
-        $_SESSION['user'] = $usuario;
+        $_SESSION['user'] = $userData;
 
         if ($rol == 1) {
             header('Location: /views/parametros.php');
@@ -44,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Credenciales incorrectas";
     }
 }
-
 ?>
 
 <!DOCTYPE html>

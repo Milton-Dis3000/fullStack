@@ -9,11 +9,13 @@ if (isset($_SESSION['user'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Procesar los datos del formulario y enviarlos a la API
-    $usuarioId = $userData['id_persona'];
+    $usuarioId = $userData['id_usuario'];
     $usuarioData = [
-        'id_persona' => $usuarioId,
-        'habilitado' => $_POST['habilitado'],
-        'fecha' => $_POST['fecha'],
+        'id_usuario' => $usuarioId,
+        'primer_nombre' => $_POST['primer_nombre'],
+        'segundo_nombre' => $_POST['segundo_nombre'],
+        'primer_apellido' => $_POST['primer_apellido'],
+        'segundo_apellido' => $_POST['segundo_apellido'],
         'usuario' => $_POST['usuario'],
         'clave' => $_POST['clave']
     ];
@@ -30,8 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verificar la respuesta de la API
     if ($httpCode == 200) {
+        // Éxito: Los datos se actualizaron correctamente
         echo "Cambios guardados correctamente";
     } else {
+        // Error: Hubo un problema al actualizar los datos
         echo "Hubo un error al guardar los cambios";
     }
 }
@@ -66,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="photoContainer1">
                 <img src="/src/img/perfilvacio.png" alt="photo">
 
-                <p>value="<?php isset($userData['id_persona']) ? print($userData['id_persona']) : print('') ?>"</p>
+                <p>value="<?php isset($userData['id_persona']) ? print($userData['primer_nombre']) : print('') ?>"</p>
 
                 <div id="toggleIcons">
                     <!-- <i class="fa-solid fa-caret-up"></i> -->
@@ -109,17 +113,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main class="flex justify-center items-center">
         <section class="bg-white p-6 rounded-lg border border-gray-300 mx-auto" style="max-width: 500px; width: 100%;">
 
-            <form action="http://localhost:3000/views_usuarios/user_profile.php" method="post" enctype="multipart/form-data" id="editForm">
-                <input type="hidden" id="id_persona" name="id_persona" value="<?= $userData['id_persona'] ?>">
-                <input type="hidden" id="id_rol" name="id_rol" value="<?= $userData['id_rol'] ?>">
+            <form action="http://127.0.0.1:8000/api/usuarios" method="post" enctype="multipart/form-data" id="editForm">
+                <input type="hidden" id="usuarioId" name="usuarioId" value="<?php echo $userData['id_persona']; ?>">
+                <input type="hidden" name="habilitado" value="<?php echo $userData['habilitado']; ?>">
+                <input type="hidden" name="fecha" value="<?php echo $userData['fecha']; ?>">
+                <input type="hidden" name="id_persona" value="<?php echo $userData['id_persona']; ?>">
+                <input type="hidden" name="id_rol" value="<?php echo $userData['id_rol']; ?>">
 
 
                 <div class="flex items-center justify-between mb-4 border-b pb-4">
                     <div>
-                        <h2 class="text-lg font-bold">Change Inf</h2>
-                        <p class="text-gray-500 text-sm">Changes will be reflected to every services</p>
+                        <h2 class="text-lg font-bold">Change Info</h2>
+                        <p class="text-gray-500 text-sm">Changes will be reflected to every service</p>
                     </div>
-
                 </div>
 
                 <div class="flex items-center space-y-4">
@@ -127,35 +133,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2 class="text-lg font-bold ">CHANGE PHOTO</h2>
                 </div>
 
-                <div class="changeName mb-4">
-                    <p>Name</p>
-                    <input type="text" id="id_persona" name="id_persona" value="<?php isset($userData['id_persona']) ? print($userData['id_persona']) : print('') ?>" placeholder="Enter your name..." class="border border-gray-300 p-2 rounded-md w-full">
-                </div>
 
                 <div class="changeName mb-4">
-                    <p>Rol</p>
-                    <input type="text" id="id_rol" name="id_rol" value="<?php isset($userData['id_rol']) ? print($userData['id_rol']) : print('') ?>" placeholder="Enter your name..." class="border border-gray-300 p-2 rounded-md w-full">
+                    <p>Primer Nombre</p>
+                    <input type="text" id="primer_nombre" name="primer_nombre" value="<?php echo $userData['primer_nombre']; ?>" placeholder="Enter your name..." class="border border-gray-300 p-2 rounded-md w-full">
                 </div>
 
-                <div class="changeBio mb-4">
-                    <p>Estado</p>
-                    <input type="text" id="habilitado" name="habilitado" value="<?php isset($userData['habilitado']) ? print($userData['habilitado']) : print('') ?>" placeholder="Enter your esta..." class="border border-gray-300 p-2 rounded-md w-full">
+                <div class="changeName mb-4">
+                    <p>Segundo Nombre</p>
+                    <input type="text" id="segundo_nombre" name="segundo_nombre" value="<?php echo $userData['segundo_nombre']; ?>" placeholder="Enter your name..." class="border border-gray-300 p-2 rounded-md w-full">
                 </div>
 
-                <div class="changePhone mb-4">
-                    <p>Fecha</p>
-                    <input type="text" id="fecha" name="fecha" value="<?php isset($userData['fecha']) ? print($userData['fecha']) : print('') ?>" placeholder="Enter your date..." class="border border-gray-300 p-2 rounded-md w-full">
+                <div class="changeName mb-4">
+                    <p>Primer Apellido</p>
+                    <input type="text" id="primer_nombre" name="primer_nombre" value="<?php echo $userData['primer_apellido']; ?>" placeholder="Enter yourl lastname..." class="border border-gray-300 p-2 rounded-md w-full">
                 </div>
 
-                <div class="changeEmail mb-4">
+                <div class="changeName mb-4">
+                    <p>Segundo Apellido</p>
+                    <input type="text" id="segundo_nombre" name="segundo_nombre" value="<?php echo $userData['segundo_apellido']; ?>" placeholder="Enter your lastname..." class="border border-gray-300 p-2 rounded-md w-full">
+                </div>
+
+                <div class="changeName mb-4">
                     <p>Email</p>
-                    <input type="email" id="usuario" name="usuario" value="<?php isset($userData['usuario']) ? print($userData['usuario']) : print('') ?>" placeholder="Enter your Email..." class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="email" id="usuario" name="usuario" value="<?php echo $userData['usuario']; ?>" placeholder="Enter your email..." class="border border-gray-300 p-2 rounded-md w-full">
                 </div>
 
-                <div class="changePhone mb-4">
+                <div class="changeName mb-4">
                     <p>Password</p>
-                    <input type="password" id="password" name="clave" value="<?php isset($userData['clave']) ? print($userData['clave']) : print('') ?>" placeholder=placeholder="Enter your password..." class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="password" id="clave" name="clave" value="<?php echo $userData['clave']; ?>" placeholder="Enter your password..." class="border border-gray-300 p-2 rounded-md w-full">
                 </div>
+
 
                 <div id="saveButton">
                     <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">Save</button>
